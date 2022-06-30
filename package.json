@@ -2,16 +2,17 @@
   "name": "climate-change-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ania kubow",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.21.4",
-    "cheerio": "^1.0.0-rc.10",
-    "express": "^4.17.1",
-    "nodemon": "^2.0.13"
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.12",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.18"
   }
 }
