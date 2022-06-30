@@ -1,8 +1,8 @@
-const PORT = process.env.PORT || 8000
+const PORT    = process.env.PORT || 8000
 const express = require('express')
-const axios = require('axios')
+const axios   = require('axios')
 const cheerio = require('cheerio')
-const app = express()
+const app     = express()
 
 const newspapers = [
     {
@@ -78,11 +78,11 @@ newspapers.forEach(newspaper => {
     axios.get(newspaper.address)
         .then(response => {
             const html = response.data
-            const $ = cheerio.load(html)
+            const $    = cheerio.load(html)
 
             $('a:contains("climate")', html).each(function () {
                 const title = $(this).text()
-                const url = $(this).attr('href')
+                const url   = $(this).attr('href')
 
                 articles.push({
                     title,
@@ -103,11 +103,9 @@ app.get('/news', (req, res) => {
 })
 
 app.get('/news/:newspaperId', (req, res) => {
-    const newspaperId = req.params.newspaperId
-
+    const newspaperId      = req.params.newspaperId
     const newspaperAddress = newspapers.filter(newspaper => newspaper.name == newspaperId)[0].address
-    const newspaperBase = newspapers.filter(newspaper => newspaper.name == newspaperId)[0].base
-
+    const newspaperBase    = newspapers.filter(newspaper => newspaper.name == newspaperId)[0].base
 
     axios.get(newspaperAddress)
         .then(response => {
@@ -115,9 +113,9 @@ app.get('/news/:newspaperId', (req, res) => {
             const $ = cheerio.load(html)
             const specificArticles = []
 
-            $('a:contains("climate")', html).each(function () {
+            $('a:contains("climate")', html).each(function() {
                 const title = $(this).text()
-                const url = $(this).attr('href')
+                const url   = $(this).attr('href')
                 specificArticles.push({
                     title,
                     url: newspaperBase + url,
